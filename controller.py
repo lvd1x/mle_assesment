@@ -19,10 +19,11 @@ class ImgController:
     def get_xy_coordinates(self):
         """Uses models lower left and upper right corners to generate images x and y coordinates"""
 
-        # gets 
+        # get size and corners
         size = self.model.get_size()
         corners = self.get_ll_ur_corners()
 
+        # set all x and y coordinates based on distance and img size
         x_coords = p_util.get_coordinates(corners[0][0], corners[1][0], size[0])
         y_coords = p_util.get_coordinates(corners[0][1], corners[1][1], size[1])
 
