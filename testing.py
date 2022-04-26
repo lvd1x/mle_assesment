@@ -1,5 +1,5 @@
 import unittest
-import pixel_coordinator as pix_coord
+import pixel_util as p_util
 
 
 class TestClassCorners(unittest.TestCase):
@@ -9,35 +9,35 @@ class TestClassCorners(unittest.TestCase):
         test_list = [(1, 1), (3, 3), (3, 1), (1, 3)]
         corners = [(1,1), (3,3)]
 
-        self.assertEqual(pix_coord.get_ll_ur_corners(test_list), corners, "Positive Case Failed")
+        self.assertEqual(p_util.get_ll_ur_corners(test_list), corners, "Positive Case Failed")
     
     def test_doubles(self):
         test_list = [(4.0, 1.5), (4.0, 8.0), (1.5, 1.5), (1.5, 8.0)]
         corners = [(1.5, 1.5), (4.0, 8.0)]
 
-        self.assertEqual(pix_coord.get_ll_ur_corners(test_list), corners, "Double Case Failed")
+        self.assertEqual(p_util.get_ll_ur_corners(test_list), corners, "Double Case Failed")
 
     def test_negatives(self):
         test_list = [(-1, -1), (-5, -5), (-1, -5), (-5, -1)]
         corners = [(-5, -5), (-1, -1)]
 
-        self.assertEqual(pix_coord.get_ll_ur_corners(test_list), corners, "Negative Case Failed")
+        self.assertEqual(p_util.get_ll_ur_corners(test_list), corners, "Negative Case Failed")
 
     def test_mixed(self):
         test_list = [(-2, -2), (-2, 2), (2, 2), (2, -2)]
         corners = [(-2, -2), (2, 2)]
 
-        self.assertEqual(pix_coord.get_ll_ur_corners(test_list), corners, "Mixed Case Failed")
+        self.assertEqual(p_util.get_ll_ur_corners(test_list), corners, "Mixed Case Failed")
 
 
 class TestClassIntervalSpacing(unittest.TestCase):
     """Test interval space funciton"""
     
     def test_positive(self):
-        self.assertEqual(pix_coord.calc_spacing(1, 3, 3), 1, "Positive Case Failed")
+        self.assertEqual(p_util.calc_spacing(1, 3, 3), 1, "Positive Case Failed")
 
     def test_negative(self):
-        self.assertEqual(pix_coord.calc_spacing(-2, -1, 3), 0.5, "Negative Case Failed")
+        self.assertEqual(p_util.calc_spacing(-2, -1, 3), 0.5, "Negative Case Failed")
 
 
 class TestClassCoordinates(unittest.TestCase):
@@ -46,12 +46,12 @@ class TestClassCoordinates(unittest.TestCase):
     def test_positive(self):
         coord_list = [1.0, 1.5, 2.0]
 
-        self.assertEqual(list(pix_coord.get_coordinates(1, 2, 3)), coord_list, "Positive Case Failed")
+        self.assertEqual(list(p_util.get_coordinates(1, 2, 3)), coord_list, "Positive Case Failed")
 
     def test_negative(self):
         coord_list = [-2.0, -1.5, -1.0]
 
-        self.assertEqual(list(pix_coord.get_coordinates(-2, -1, 3)), coord_list, "Negative Case Failed")
+        self.assertEqual(list(p_util.get_coordinates(-2, -1, 3)), coord_list, "Negative Case Failed")
 
 
 class TestClassCartesianRow(unittest.TestCase):
@@ -60,12 +60,12 @@ class TestClassCartesianRow(unittest.TestCase):
     def test_positive(self):
         outcome = [[1, 1], [2, 1], [3, 1]]
 
-        self.assertEqual(pix_coord.cartesian_row([1, 2, 3], 1), outcome, "Positive Case Failed")
+        self.assertEqual(p_util.cartesian_row([1, 2, 3], 1), outcome, "Positive Case Failed")
     
     def test_negative(self):
         outcome = [[-2.0, 1], [-1.5, 1], [-1.0, 1]]
 
-        self.assertEqual(pix_coord.cartesian_row([-2.0, -1.5, -1.0], 1), outcome, "Positive Case Failed")
+        self.assertEqual(p_util.cartesian_row([-2.0, -1.5, -1.0], 1), outcome, "Positive Case Failed")
 
 
 def run_tests():
