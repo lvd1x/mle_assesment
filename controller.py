@@ -40,11 +40,8 @@ class ImgController:
         """Extracts model data and creates grid solution"""
         
         # cartesian product of images x and y coordinate lists
-        print('h1')
         xy_coordinates = self.get_xy_coordinates()
-        print('h2')
         solution = p_util.cartesian_prod(xy_coordinates[0], xy_coordinates[1])
-        print('h3')
 
         # sets models solution
         self.model.set_solution(solution)
@@ -56,5 +53,6 @@ class ImgController:
         return self.model.get_solution()
     
     def clear_solution(self):
+        """removes model's solution"""
         self.model.set_solution([])
     

@@ -3,30 +3,27 @@ import model
 import controller
 import re
 
-
 app = Flask(__name__)
 m = model.ImgModel()
 
-def parse_numbers(string_token):
-        """Parses input string into list of numbers as strings"""
+def parse_input(string_token):
+    """Parses input string into list of ints/floats as strings"""
 
-        return re.findall(r"[-+]?\d*\.\d+|\d+", string_token)
+    return re.findall(r"[-+]?\d*\.\d+|\d+", string_token)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def index(c=controller.ImgController(m)):
 
     if request.method == "POST":
-        img_size_tokens = request.form['imgsize']
-        img_size_string = parse_numbers(img_size_tokens)
-        print(img_size_string)
 
-        corners_tokens = request.form['corners']
-        corners_string = parse_numbers(corners_tokens)
-        print(corners_string)
+        # parses inputs into lists of strings
+        img_size_string = parse_input(request.form['imgsize'])
+        corners_string = parse_input(request.form['corners'])
 
         try:
-            if (len(img_size_string) < 2) or (len(corners_string) < 8):
+            # if length of either parsed input is incorrect, redirected with no solution
+            if (len(img_size_string) != 2) or (len(corners_string) != 8):
                 c.clear_solution()
                 return redirect('/')
             else:
