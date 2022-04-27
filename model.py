@@ -4,6 +4,7 @@ class ImgModel:
         self.size = size
         self.corners = corners
         self.solution = []
+        
     
     def has_solution(self) -> bool:
         """Returns true if image grid has been produced"""

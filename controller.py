@@ -1,5 +1,4 @@
 import pixel_util as p_util
-import re
 
 class ImgController:
 
