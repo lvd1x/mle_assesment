@@ -19,7 +19,7 @@ def calc_spacing(lower_limit, upper_limit, intervals) -> float:
 def get_coordinates(lower_limit, upper_limit, intervals):
     """Get equally spaced values between lower and upper limit for pixels"""
 
-    return np.linspace(lower_limit, upper_limit, intervals, endpoint=True)
+    return np.linspace(lower_limit, upper_limit, int(intervals), endpoint=True)
 
 # helper function to create rows in cartesian_prod
 def cartesian_row(x_array, y):
