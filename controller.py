@@ -8,7 +8,7 @@ class ImgController:
     def parse_size(self, string_size_list):
         """Takes list of paramaters as strings and sets size for image"""
 
-        size = (float(string_size_list[0]), float(string_size_list[1]))
+        size = (float(string_size_list[1]), float(string_size_list[0]))
         self.model.set_size(size)
 
     def parse_corners(self, corners_string):
